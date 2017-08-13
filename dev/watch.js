@@ -2,7 +2,7 @@ const _ = require('lodash');
 const watch = require('node-watch');
 const MiaDevRunner = require('./MiaDevRunner');
 
-const WATCH_IGNORE_FOLDERS = [ '.git', 'dev', 'node_modules'];
+const WATCH_IGNORE_FOLDERS = [ '.git', 'node_modules'];
 const WATCH_FOLDER = '../';
 const WATCH_OPTIONS = {
  recursive: true,
@@ -13,10 +13,11 @@ const WATCH_OPTIONS = {
 
 (function run() {
   let miaDevRunner = new MiaDevRunner();
-  //miaDevRunner.run();
+  miaDevRunner.run();
 
-  watch(WATCH_FOLDER, WATCH_OPTIONS, (evt, name) => {
+  let watcher = watch(WATCH_FOLDER, WATCH_OPTIONS, (evt, name) => {
     console.log(`Watch.js: Mia updated: ${evt}, ${name}`);
-    miaDevRunner.run();
-  })
+    run();
+    watcher.close();
+  });
 })();
