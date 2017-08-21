@@ -1,14 +1,16 @@
+const BrainPart = require('../brain_part');
 const Speech = require('@google-cloud/speech');
-const { Transform } = require('stream');
-const ReasoningCenter = require('../brain/reasoning_center');
+const Ears = require('../../body/ears');
 
 const GOOGLE_SPEECH_PROJECT_ID = 'mia-176720';
-const speechClient = Speech({
-  projectId: GOOGLE_SPEECH_PROJECT_ID
-});
 
-class AudioCenter {
+class AudioCenter extends BrainPart {
   constructor() {
+    super();
+
+    const speechClient = Speech({
+      projectId: GOOGLE_SPEECH_PROJECT_ID
+    });
     this.instream = speechClient.streamingRecognize({
       config: {
         encoding: 'LINEAR16',
@@ -19,12 +21,14 @@ class AudioCenter {
       console.log(`AudioCenter: Response: ${JSON.stringify(response, null, 4)}`)
       let results = response.results;
       if (results.length > 0) {
-        ReasoningCenter.reasonAudio(results[0].alternatives);
+        this.neuralPathways.reasoningCenter.reasonAudio(results[0].alternatives);
       }
     }).on('error', (error) => {
       console.log(error);
     });
+
+    this.ears = new Ears(this);
   }
 }
 
-module.exports = new AudioCenter();
+module.exports = AudioCenter;
