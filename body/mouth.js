@@ -1,4 +1,5 @@
 let say = require('say');
+const Logger = require('../Logger').initialize(__filename);
 
 class Mouth {
   constructor(speechCenter) {
@@ -10,7 +11,7 @@ class Mouth {
         return console.error(err);
         cb();
       }
-      console.log('Done speaking');
+      Logger.info('Done speaking');
       cb();
     });
   }

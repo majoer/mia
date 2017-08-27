@@ -1,10 +1,11 @@
 const AudioCenter = require('./parts/audio_center');
 const SpeechCenter = require('./parts/speech_center');
 const ReasoningCenter = require('./parts/reasoning_center');
+const Logger = require('../Logger').initialize(__filename);
 
 class Brain {
   constructor() {
-    console.log('Setting up neural pathways');
+    Logger.info('Setting up neural pathways');
     this.neuralPathways = {
       audioCenter: new AudioCenter(),
       reasoningCenter: new ReasoningCenter(),
@@ -14,18 +15,18 @@ class Brain {
     for (let key in this.neuralPathways) {
       if (this.neuralPathways.hasOwnProperty(key)) {
         let brainPart = this.neuralPathways[key];
-        console.log(`Connecting ${key} to neural pathway`);
+        Logger.info(`Connecting ${key} to neural pathway`);
         brainPart.neuralPathways = this.neuralPathways;
       }
     }
-    console.log('All neural pathways connected');
+    Logger.info('All neural pathways connected');
   }
 
   stop() {
     for (let key in this.neuralPathways) {
       if (this.neuralPathways.hasOwnProperty(key)) {
         let brainPart = this.neuralPathways[key];
-        console.log(`Shutting down ${key}`);
+        Logger.info(`Shutting down ${key}`);
         brainPart.stop();
       }
     }

@@ -1,4 +1,5 @@
 const { spawn } = require('child_process');
+const Logger = require('../Logger').initialize(__filename);
 
 class SoxProcess {
   constructor(...args) {
@@ -6,12 +7,12 @@ class SoxProcess {
   }
 
   start() {
-    console.log(`Starting sox process: ${this.args[0].join(' ')}`);
+    Logger.info(`Starting sox process: ${this.args[0].join(' ')}`);
     this.process = spawn('sox', ...this.args);
   }
 
   stop() {
-    console.log('Killing sox process');
+    Logger.info('Killing sox process');
     this.process.kill('SIGTERM');
   }
 

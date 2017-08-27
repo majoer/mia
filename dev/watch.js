@@ -1,6 +1,5 @@
 const _ = require('lodash');
 const watch = require('node-watch');
-const { spawnNodeProcess } = require('./process-factory');
 const MiaDevRunner = require('./MiaDevRunner');
 const Logger = require('../Logger').initialize(__filename);
 

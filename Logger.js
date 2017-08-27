@@ -1,5 +1,5 @@
 class Logger {
-  initialize(fileName) {
+  constructor(fileName) {
     this.name = fileName;
     return this;
   }
@@ -7,10 +7,14 @@ class Logger {
   info(message) {
     console.log(`${this.name} (${process.pid}): ${message}`);
   }
-  
+
   error(message) {
     console.error(`${this.name} (${process.pid}): ${message}`);
   }
 }
 
-module.exports = new Logger();
+Logger.initialize = (fileName) => {
+  return new Logger(fileName);
+}
+
+module.exports = Logger;

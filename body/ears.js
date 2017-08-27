@@ -1,5 +1,6 @@
 const Sox = require('../private_modules/sox');
 const fs = require('fs');
+const Logger = require('../Logger').initialize(__filename);
 
 class Ears {
   constructor(audioCenter) {
@@ -12,20 +13,20 @@ class Ears {
     this.soxProcess.getStream().pipe(this.audioCenter.instream);
     //
     // process.on('exit', () => {
-    //   console.log('Process Exit: Ears');
+    //   Logger.info('Process Exit: Ears');
     //   this.soxProcess.stop();
     // })
     // process.kill();
   }
 
   plug() {
-    console.log('Plugging ears');
+    Logger.info('Plugging ears');
     this.soxProcess.getStream().unpipe(this.audioCenter.instream);
     this.soxProcess.stop();
   }
 
   unplug() {
-    console.log('Unplugging ears');
+    Logger.info('Unplugging ears');
     this.soxProcess.start();
     this.soxProcess.getStream().pipe(this.audioCenter.instream);
   }
