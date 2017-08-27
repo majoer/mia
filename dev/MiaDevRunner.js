@@ -1,35 +1,49 @@
-const { spawn } = require('child_process');
+const { spawn, fork } = require('child_process');
+const Logger = require('../Logger').initialize(__dirname);
+const path = require('path');
 
 class MiaDevRunner {
   constructor() {
-    this.process = undefined;
+    this.running = false;
   }
 
-  run() {
-    if (this.process) {
-      //Stop process
-      this.stop();
+  start() {
+    Logger.info('MiaDevRunner PID: ' + process.pid);
+    this.running = true;
+    this.miaProcess = fork('Mia.js');
+    this.miaProcess.once('exit', (code, signal) => {
+      this.running = false;
+      if (code) {
+        Logger.info(`Mia child process exited on its own: ${code}`);
+      } else if (signal) {
+        Logger.info(`Mia child process exited forcibly: ${signal}`);
+      } else {
+        Logger.info(`Mia child process exited`);
+      }
+    });
+  }
+
+  restart() {
+    Logger.info('Mia is restarting...');
+    if (!this.running) {
+      Logger.info('Mia already shut down');
+      this.start();
+      return;
     }
 
-    //Start process
-    this.process = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', [ 'run', 'mia-dev' ]);
-    this.process.stdout.on('data', (data) => {
-      console.log(`stdout: ${data}`);
+    this.miaProcess.once('exit', () => {
+      Logger.info('Mia finally exited, restarting.');
+      this.start();
     });
-
-    this.process.stderr.on('data', (data) => {
-      console.log(`stderr: ${data}`);
-    });
-
-    this.process.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-      this.process = undefined;
-    });
+    this.miaProcess.send('kill:SIGTERM');
   }
 
   stop() {
-    this.process.kill('SIGHUP');
-    this.process = undefined;
+    if (!this.running) {
+      Logger.info('Mia already shut down');
+      return;
+    }
+    this.miaProcess.send('kill:SIGTERM');
   }
 }
 

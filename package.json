@@ -2,18 +2,18 @@
   "name": "mia",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Mia.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "mia-dev": "node Mia.js",
     "dev": "node dev/watch.js"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@google-cloud/speech": "^0.10.2",
+    "fft-js": "0.0.11",
     "lodash": "^4.17.4",
-    "mic": "git+https://github.com/ashishbajaj99/mic.git",
+    "mic": "^2.1.1",
     "node-watch": "^0.5.5",
     "say": "^0.11.0"
   }

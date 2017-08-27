@@ -20,6 +20,16 @@ class Brain {
     }
     console.log('All neural pathways connected');
   }
+
+  stop() {
+    for (let key in this.neuralPathways) {
+      if (this.neuralPathways.hasOwnProperty(key)) {
+        let brainPart = this.neuralPathways[key];
+        console.log(`Shutting down ${key}`);
+        brainPart.stop();
+      }
+    }
+  }
 }
 
 module.exports = Brain;

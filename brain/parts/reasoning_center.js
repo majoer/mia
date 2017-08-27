@@ -11,7 +11,7 @@ class ReasoningCenter extends BrainPart {
     }
 
     if (findKeyword(alternatives, 'Mia')) {
-      this.neuralPathways.speechCenter.speak('Yes?. How can I help you?');
+      this.neuralPathways.speechCenter.speak('Yes? How can I help you?');
     }
   }
 }

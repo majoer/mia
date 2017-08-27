@@ -10,6 +10,12 @@ class Ears {
 
     this.soxProcess.start();
     this.soxProcess.getStream().pipe(this.audioCenter.instream);
+    //
+    // process.on('exit', () => {
+    //   console.log('Process Exit: Ears');
+    //   this.soxProcess.stop();
+    // })
+    // process.kill();
   }
 
   plug() {

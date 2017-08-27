@@ -1,8 +1,10 @@
 const _ = require('lodash');
 const watch = require('node-watch');
+const { spawnNodeProcess } = require('./process-factory');
 const MiaDevRunner = require('./MiaDevRunner');
+const Logger = require('../Logger').initialize(__filename);
 
-const WATCH_IGNORE_FOLDERS = [ '.git', 'node_modules', 'npm-debug.log', '\\out' ];
+const WATCH_IGNORE_FOLDERS = [ '.git', 'node_modules', 'npm-debug.info', '\\out' ];
 const WATCH_FOLDER = '../';
 const WATCH_OPTIONS = {
  recursive: true,
@@ -13,12 +15,28 @@ const WATCH_OPTIONS = {
 };
 
 (function run() {
+  Logger.info('Initialized');
   let miaDevRunner = new MiaDevRunner();
-  miaDevRunner.run();
+  miaDevRunner.start();
 
   let watcher = watch(WATCH_FOLDER, WATCH_OPTIONS, (evt, name) => {
-    console.log(`Watch.js: Mia updated: ${evt}, ${name}`);
-    run();
+    Logger.info(`Mia updated: ${evt}, ${name}`);
+    miaDevRunner.restart();
+  });
+
+  process.once('SIGTERM', () => {
+    Logger.info('SIGTERM');
+    process.exit(0);
+  });
+
+  process.once('SIGINT', () => {
+    Logger.info('SIGINT');
+    process.exit(0);
+  });
+
+  process.once('exit', () => {
+    Logger.info('exit');
+    miaDevRunner.stop();
     watcher.close();
   });
 })();
