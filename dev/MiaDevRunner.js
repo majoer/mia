@@ -1,6 +1,5 @@
 const Logger = require('../Logger').initialize(__filename);
-const { spawn, fork } = require('child_process');
-const path = require('path');
+const { fork } = require('child_process');
 
 class MiaDevRunner {
   constructor() {
@@ -18,7 +17,7 @@ class MiaDevRunner {
       } else if (signal) {
         Logger.info(`Mia child process exited forcibly: ${signal}`);
       } else {
-        Logger.info(`Mia child process exited`);
+        Logger.info('Mia child process exited');
       }
     });
   }

@@ -7,14 +7,10 @@ const DEFAULT_RECORD_OPTIONS = {
   rate: '16000',
   encoding: 'signed-integer',
   inputFileName: 'default'
-}
+};
 
 class Sox {
   constructor() {
-  }
-
-  record2(options) {
-    return new SoxProcess(['-t', 'waveaudio', '0', 'out/hei.wav']);
   }
 
   record(options) {
@@ -27,7 +23,7 @@ class Sox {
       '-r', options.rate,
       '-e', options.encoding,
       '-t', 'waveaudio',
-       options.inputFileName,
+      options.inputFileName,
       '-t', 'wav',
       '-'
     ]);
