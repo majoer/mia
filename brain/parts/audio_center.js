@@ -40,14 +40,6 @@ class AudioCenter extends BrainPart {
   stop() {
     this.ears.plug();
   }
-
-  enable() {
-    this.ears.unplug();
-  }
-
-  disable() {
-    this.ears.plug();
-  }
 }
 
 module.exports = AudioCenter;

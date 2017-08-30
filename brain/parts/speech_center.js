@@ -7,9 +7,9 @@ class SpeechCenter extends BrainPart {
     this.mouth = new Mouth(this);
   }
   speak(text) {
-    this.neuralPathways.audioCenter.disable();
+    this.neuralPathways.audioCenter.stop();
     this.mouth.speak(text, () => {
-      this.neuralPathways.audioCenter.enable();
+      this.neuralPathways.audioCenter.start();
     });
   }
 }
