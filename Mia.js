@@ -1,3 +1,4 @@
+require('./globals');
 const path = require('path');
 const Brain = require('./brain/brain.js');
 const Logger = require('./Logger').initialize(__dirname);
