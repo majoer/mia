@@ -1,7 +1,7 @@
+const Logger = require('../Logger').initialize(__filename);
 const _ = require('lodash');
 const watch = require('node-watch');
 const MiaDevRunner = require('./MiaDevRunner');
-const Logger = require('../Logger').initialize(__filename);
 
 const WATCH_IGNORE_FOLDERS = [ '.git', 'node_modules', 'npm-debug.info', '\\out' ];
 const WATCH_FOLDER = '../';

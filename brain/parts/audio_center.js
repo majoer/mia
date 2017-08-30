@@ -1,3 +1,4 @@
+const Logger = requireModule('Logger').initialize(__filename);
 const BrainPart = require('../brain_part');
 const Speech = require('@google-cloud/speech');
 const Ears = require('../../body/ears');
@@ -22,10 +23,10 @@ class AudioCenter extends BrainPart {
 
     speechRequestTransform.on('data', (request) => {
       speechClient.recognize(request).then((response) => {
-        console.log(JSON.stringify(response, 4, null));
+        Logger.info(JSON.stringify(response, 4, null));
         this.neuralPathways.reasoningCenter.reasonAudio(response[0].results[0].alternatives);
       }).catch((err) => {
-        console.log(err);
+        Logger.info(err);
       });
     });
 

@@ -1,5 +1,5 @@
-const { spawn } = require('child_process');
 const Logger = require('../Logger').initialize(__filename);
+const { spawn } = require('child_process');
 
 class SoxProcess {
   constructor(...args) {

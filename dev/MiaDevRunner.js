@@ -1,5 +1,5 @@
+const Logger = require('../Logger').initialize(__filename);
 const { spawn, fork } = require('child_process');
-const Logger = require('../Logger').initialize(__dirname);
 const path = require('path');
 
 class MiaDevRunner {

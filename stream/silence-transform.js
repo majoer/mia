@@ -1,6 +1,6 @@
+const Logger = requireModule('Logger').initialize(__filename);
 const { Transform, Duplex } = require('stream');
 const { fft: fft, util: fftUtil  } = require('fft-js');
-const Logger = requireModule('Logger').initialize(__dirname);
 
 const FREQUENCY_HEARABLE_LOW_END = 300;
 const FREQUENCY_HEARABLE_HIGH_END = 3500;

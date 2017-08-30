@@ -1,5 +1,5 @@
+const Logger = requireModule('Logger').initialize(__filename);
 const BrainPart = require('../brain_part');
-const Logger = requireModule('logger').initialize(__dirname);
 
 function findKeyword(alternatives, keyword) {
   return alternatives.find((alternative => alternative.transcript.trim().includes(keyword)));

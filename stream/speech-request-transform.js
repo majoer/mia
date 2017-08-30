@@ -1,3 +1,4 @@
+const Logger = requireModule('Logger').initialize(__filename);
 const { Transform } = require('stream');
 
 const DEFAULT_CONFIG = {
@@ -15,7 +16,7 @@ class SpeechRequestTransform extends Transform {
   }
 
   _transform(chunk, encoding, callback) {
-    console.log('Received Sentence');
+    Logger.info('Received Sentence');
     this.push({
       config: this.config,
       audio: {

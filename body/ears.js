@@ -1,6 +1,6 @@
+const Logger = require('../Logger').initialize(__filename);
 const Sox = require('../private_modules/sox');
 const fs = require('fs');
-const Logger = require('../Logger').initialize(__filename);
 
 class Ears {
   constructor(audioCenter) {

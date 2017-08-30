@@ -1,5 +1,5 @@
-let say = require('say');
 const Logger = require('../Logger').initialize(__filename);
+const say = require('say');
 
 class Mouth {
   constructor(speechCenter) {

@@ -1,7 +1,7 @@
+const Logger = require('../Logger').initialize(__filename);
 const AudioCenter = require('./parts/audio_center');
 const SpeechCenter = require('./parts/speech_center');
 const ReasoningCenter = require('./parts/reasoning_center');
-const Logger = require('../Logger').initialize(__filename);
 
 class Brain {
   constructor() {
