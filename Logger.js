@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 class Logger {
   constructor(fileName) {
     this.name = fileName;
@@ -15,6 +17,6 @@ class Logger {
 
 Logger.initialize = (fileName) => {
   return new Logger(fileName);
-}
+};
 
 module.exports = Logger;
