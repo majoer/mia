@@ -26,7 +26,7 @@ class DevProcess {
   restart() {
     Logger.info('DevProcess is restarting...');
     if (!this.running) {
-      Logger.info('DevProce already shut down');
+      Logger.info('DevProcess already shut down');
       this.start();
       return;
     }

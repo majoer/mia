@@ -25,7 +25,7 @@ if (!moduleName) {
   devProcess.start();
 
   let watcher = watch(WATCH_FOLDER, WATCH_OPTIONS, (evt, name) => {
-    Logger.info(`Mia updated: ${evt}, ${name}`);
+    Logger.info(`Project updated: ${evt}, ${name}`);
     devProcess.restart();
   });
 
