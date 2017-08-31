@@ -1,5 +1,5 @@
 const Logger = requireModule('Logger').initialize(__filename);
-const BrainPart = require('../brain_part');
+const BrainPart = requireModule('brain/brain_part');
 
 function findKeyword(alternatives, keyword) {
   return alternatives.find((alternative => alternative.transcript.trim().includes(keyword)));
@@ -7,7 +7,7 @@ function findKeyword(alternatives, keyword) {
 
 class ReasoningCenter extends BrainPart {
   reasonAudio(alternatives) {
-    Logger.info(`Reasoning alternatives: ${JSON.stringify(alternatives)}`)
+    Logger.info(`Reasoning alternatives: ${JSON.stringify(alternatives)}`);
     if (findKeyword(alternatives, 'hello')) {
       this.neuralPathways.speechCenter.speak('Why hello there. How can I help you?');
     }

@@ -1,5 +1,5 @@
-const BrainPart = require('../brain_part');
-const Mouth = require('../../body/mouth');
+const BrainPart = requireModule('brain/brain_part');
+const Mouth = requireModule('body/mouth');
 
 class SpeechCenter extends BrainPart {
   constructor() {

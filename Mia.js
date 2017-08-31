@@ -1,6 +1,6 @@
 require('./globals');
 const Logger = requireModule('Logger').initialize(__filename);
-const Brain = require('./brain/brain.js');
+const Brain = requireModule('brain/brain.js');
 const path = require('path');
 
 process.env.GOOGLE_APPLICATION_CREDENTIALS = path.resolve('credentials/Mia--eacd283bbbc4.json');

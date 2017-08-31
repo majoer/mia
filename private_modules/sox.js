@@ -1,4 +1,4 @@
-const SoxProcess = require('./sox_process');
+const SoxProcess = requireModule('private_modules/sox_process');
 
 const DEFAULT_RECORD_OPTIONS = {
   bitwidth: '16',

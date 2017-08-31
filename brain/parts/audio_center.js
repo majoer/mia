@@ -1,11 +1,9 @@
 const Logger = requireModule('Logger').initialize(__filename);
-const BrainPart = require('../brain_part');
-const Speech = require('@google-cloud/speech');
-const Ears = require('../../body/ears');
-const { Duplex } = require('stream');
-const { fft: fft, util: fftUtil  } = require('fft-js');
+const Ears = requireModule('body/ears');
+const BrainPart = requireModule('brain/brain_part');
 const SilenceTransform = requireModule('stream/silence-transform');
 const SpeechRequestTransform = requireModule('stream/speech-request-transform');
+const Speech = require('@google-cloud/speech');
 
 const GOOGLE_SPEECH_PROJECT_ID = 'mia-176720';
 

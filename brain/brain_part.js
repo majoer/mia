@@ -1,6 +1,6 @@
 class BrainPart {
   constructor() {
-    this.neuralPathways = {}
+    this.neuralPathways = {};
   }
 
   start() {
@@ -8,7 +8,7 @@ class BrainPart {
   }
 
   stop() {
-    
+
   }
 }
 

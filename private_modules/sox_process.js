@@ -1,4 +1,4 @@
-const Logger = require('../Logger').initialize(__filename);
+const Logger = requireModule('Logger').initialize(__filename);
 const { spawn } = require('child_process');
 
 class SoxProcess {
