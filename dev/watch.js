@@ -1,6 +1,6 @@
 require('../globals');
 const Logger = requireModule('Logger').initialize(__filename);
-const MiaDevRunner = requireModule('dev/MiaDevRunner');
+const DevProcess = requireModule('dev/dev-process');
 const watch = require('node-watch');
 
 const WATCH_IGNORE_FOLDERS = [ '.git', 'node_modules', 'npm-debug.info', '\\out' ];
@@ -13,14 +13,20 @@ const WATCH_OPTIONS = {
   }
 };
 
+const moduleName = process.argv[2];
+
+if (!moduleName) {
+  throw new Error('You must supply a module name');
+}
+
 (function run() {
   Logger.info('Initialized');
-  let miaDevRunner = new MiaDevRunner();
-  miaDevRunner.start();
+  let devProcess = new DevProcess(moduleName);
+  devProcess.start();
 
   let watcher = watch(WATCH_FOLDER, WATCH_OPTIONS, (evt, name) => {
     Logger.info(`Mia updated: ${evt}, ${name}`);
-    miaDevRunner.restart();
+    devProcess.restart();
   });
 
   process.once('SIGTERM', () => {
@@ -35,7 +41,7 @@ const WATCH_OPTIONS = {
 
   process.once('exit', () => {
     Logger.info('exit');
-    miaDevRunner.stop();
+    devProcess.stop();
     watcher.close();
   });
 })();

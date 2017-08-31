@@ -4,8 +4,9 @@
   "description": "",
   "main": "Mia.js",
   "scripts": {
+    "learn-name": "node learn.js",
     "mia-dev": "node Mia.js",
-    "dev": "node dev/watch.js"
+    "dev": "node dev/watch.js Mia.js"
   },
   "author": "",
   "license": "ISC",
