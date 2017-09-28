@@ -4,7 +4,7 @@
   "description": "",
   "main": "Mia.js",
   "scripts": {
-    "learn-name": "node learn.js",
+    "learn-name": "node dev/watch.js learn.js",
     "mia-dev": "node Mia.js",
     "dev": "node dev/watch.js Mia.js"
   },

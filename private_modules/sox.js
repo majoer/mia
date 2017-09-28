@@ -30,4 +30,4 @@ class Sox {
   }
 }
 
-module.exports = new Sox();
+module.exports = Sox;
